@@ -1,0 +1,127 @@
+/* Footer.css */
+
+.footer {
+  background-color: #2c3e50; /* Màu nền tối cho footer */
+  color: #ecf0f1; /* Màu chữ sáng */
+  padding: 40px 20px 20px; /* Đệm trên, dưới, hai bên */
+  font-family: 'Segoe UI', sans-serif; /* Font chữ */
+  border-top: 1px solid #34495e; /* Đường viền trên nhẹ */
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap; /* Cho phép các cột xuống dòng trên màn hình nhỏ */
+  justify-content: space-around; /* Phân bổ không gian giữa các cột */
+  max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+  margin: 0 auto; /* Căn giữa container */
+  gap: 30px; /* Khoảng cách giữa các cột */
+}
+
+.footer-column {
+  flex: 1; /* Cho phép các cột co giãn */
+  min-width: 220px; /* Chiều rộng tối thiểu cho mỗi cột */
+  margin-bottom: 20px; /* Khoảng cách dưới cùng khi các cột xuống dòng */
+}
+
+.footer-logo {
+  max-width: 150px; /* Kích thước logo */
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.footer-column p {
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.footer-column p strong {
+  font-size: 1.1em;
+  color: #ecf0f1;
+}
+
+.footer-column h4 {
+  font-size: 1.2em;
+  color: #3498db; /* Màu tiêu đề cột */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #3498db; /* Gạch chân tiêu đề */
+  padding-bottom: 5px;
+  display: inline-block; /* Để gạch chân chỉ rộng bằng chữ */
+}
+
+.footer-column ul {
+  list-style: none; /* Bỏ dấu đầu dòng của danh sách */
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 8px;
+  font-size: 0.95em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li:hover {
+  color: #3498db; /* Màu khi hover */
+}
+
+.footer-column ul li img {
+  vertical-align: middle; /* Căn giữa ảnh với chữ */
+  margin-right: 5px;
+  max-height: 20px; /* Kích thước icon DMCA */
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #34495e; /* Đường phân cách với phần bản quyền */
+  font-size: 0.85em;
+  color: #bdc3c7; /* Màu chữ nhẹ hơn cho phần bản quyền */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column; /* Xếp chồng các cột trên màn hình nhỏ */
+    align-items: center; /* Căn giữa các cột */
+    text-align: center;
+  }
+
+  .footer-column {
+    min-width: unset; /* Bỏ giới hạn chiều rộng tối thiểu */
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    margin-bottom: 30px;
+  }
+
+  .footer-column:last-child {
+    margin-bottom: 0; /* Bỏ margin cuối cùng */
+  }
+
+  .footer-logo {
+    margin: 0 auto 15px; /* Căn giữa logo */
+  }
+
+  .footer-column h4 {
+    margin-bottom: 10px;
+  }
+
+  .footer-column ul {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 15px 15px;
+  }
+  .footer-column p {
+    font-size: 0.9em;
+  }
+  .footer-column h4 {
+    font-size: 1.1em;
+  }
+  .footer-column ul li {
+    font-size: 0.9em;
+  }
+}
