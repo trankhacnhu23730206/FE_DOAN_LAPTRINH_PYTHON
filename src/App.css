@@ -26,11 +26,24 @@ body, html, #root {
   background-color: #f8f7f7;
   border-bottom: 2px solid #a77c59;
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+
 }
 
+
+
 .logo, .login {
+  display: flex;
   font-size: 20px;
   font-weight: bold;
+}
+
+.login div {
+  margin-right: 20px;
+}
+
+.login .header-link {
+  margin-right: 20px;
 }
 
 /* Main Layout */
@@ -39,17 +52,11 @@ body, html, #root {
   padding:20px 20px;
 }
 
-.column-company-wrap{
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.column-company {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+.company-total {
+  margin: 0 auto;
+  min-height: 100vh; /* Bảo đảm đủ chiều cao trang */
+  padding-bottom: 120px; /* Dành chỗ cho footer */
+  position: relative;
 }
 
 /* Box style */
@@ -64,4 +71,31 @@ body, html, #root {
   transform: scale(1.05);
   background-color: #d2b59a;
   cursor: pointer;
+}
+
+
+
+
+/* THANH SEARCH HEADER */
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 1rem;
+}
+
+.search-box input[type="search"] {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  width: 200px;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-box input[type="search"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+  width: 250px;
 }

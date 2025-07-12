@@ -1,0 +1,119 @@
+
+
+
+.company-header {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.company-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #e0e0e0;
+  border: 2px solid #8b6c55;
+  border-radius: 8px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.company-btn:hover {
+  background-color: #d2b59a;
+  transform: translateY(-2px);
+}
+
+.company-btn.active {
+  background-color: #8b6c55;
+  color: white;
+  border-color: #8b6c55;
+}
+
+
+
+
+/* PAGINATION COMPANY */
+.pagination-options {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.pagination-options select {
+  margin: 0 8px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background-color: #f2f2f2;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.pagination button:hover:not(.active-page) {
+  background-color: #ddd;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.pagination .active-page {
+  background-color: #8b6c55;
+  color: white;
+  font-weight: bold;
+}
+
+
+
+/* INFORMATION COMPANY */
+/* Ô hiển thị thông tin công ty */
+.company-box {
+  background-color: #fefefe;
+  border: 2px solid #8b6c55;
+  border-radius: 12px;
+  padding: 20px;
+  width: 300px;
+  height: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.company-box:hover {
+  transform: scale(1.03);
+  background-color: #fff8f0;
+  cursor: pointer;
+}
+
+.company-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5c3d24;
+  margin-bottom: 5px;
+}
+
+.column-company {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}

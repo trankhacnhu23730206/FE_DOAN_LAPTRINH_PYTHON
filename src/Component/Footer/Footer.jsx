@@ -5,7 +5,6 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-column">
-          {/* <img src="https://devops.vn/img/logo_devopsvn.png" alt="PYTHON Logo" className="footer-logo" /> */}
           <h4>TKN COMPANY</h4>
           <p><strong>PYTHON VietNam</strong></p>
           <p>Cộng đồng PYTHON VietNam - Kết nối,<br />hợp tác, chia sẻ.</p>
