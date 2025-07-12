@@ -3,7 +3,6 @@ import "./Products.css";
 import { useState } from "react";
 
 function Products() {
-
   const navigate = useNavigate();
 
   const [products] = useState(
@@ -24,7 +23,12 @@ function Products() {
     <div className="product-total">
       <div className="product-header">
         <button className="product-btn active">Danh sách sản phẩm</button>
-        <button className="product-btn" onClick={()=>navigate("/create-product")}>Đăng ký quảng cáo sản phẩm</button>
+        <button
+          className="product-btn"
+          onClick={() => navigate("/create-product")}
+        >
+          Đăng ký quảng cáo sản phẩm
+        </button>
       </div>
       <div className="product-grid">
         {products.map((p) => (
@@ -37,12 +41,15 @@ function Products() {
               <li>
                 <strong>Giá thị trường:</strong> {p.price}
               </li>
-              {/* <li><strong>Lợi ích:</strong> {p.benefits}</li> */}
+
               <li>
                 <strong>Category:</strong> {p.category}
               </li>
               <li>
                 <strong>Công ty:</strong> {p.company}
+              </li>
+              <li style={{ color: 'red' }}>
+                <strong>Lợi ích:</strong> {p.benefits}
               </li>
             </ul>
           </div>
