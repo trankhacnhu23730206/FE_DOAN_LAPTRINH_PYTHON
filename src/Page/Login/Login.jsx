@@ -1,16 +1,5 @@
 import "./Login.css";
 
-// function Login() {
-//   return (
-//     <div className="login-total">
-//       <div>ĐĂNG NHẬP USER</div>
-//     </div>
-//   );
-// }
-
-// export default Login;
-
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";

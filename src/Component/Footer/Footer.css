@@ -62,44 +62,44 @@
 }
 
 .footer-column ul li:hover {
-  color: #3498db; /* Màu khi hover */
+  color: #3498db; 
 }
 
 .footer-column ul li img {
-  vertical-align: middle; /* Căn giữa ảnh với chữ */
+  vertical-align: middle;
   margin-right: 5px;
-  max-height: 20px; /* Kích thước icon DMCA */
+  max-height: 20px; 
 }
 
 .footer-bottom {
   text-align: center;
   margin-top: 30px;
   padding-top: 20px;
-  border-top: 1px solid #34495e; /* Đường phân cách với phần bản quyền */
+  border-top: 1px solid #34495e;
   font-size: 0.85em;
-  color: #bdc3c7; /* Màu chữ nhẹ hơn cho phần bản quyền */
+  color: #bdc3c7; 
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .footer-container {
-    flex-direction: column; /* Xếp chồng các cột trên màn hình nhỏ */
-    align-items: center; /* Căn giữa các cột */
+    flex-direction: column; 
+    align-items: center; 
     text-align: center;
   }
 
   .footer-column {
-    min-width: unset; /* Bỏ giới hạn chiều rộng tối thiểu */
-    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    min-width: unset; 
+    width: 100%; 
     margin-bottom: 30px;
   }
 
   .footer-column:last-child {
-    margin-bottom: 0; /* Bỏ margin cuối cùng */
+    margin-bottom: 0; 
   }
 
   .footer-logo {
-    margin: 0 auto 15px; /* Căn giữa logo */
+    margin: 0 auto 15px; 
   }
 
   .footer-column h4 {

@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import "./Company.css";
 import { useState } from "react";
 
 function Company() {
+  const navigate = useNavigate()
+
   const allCompanies = [...Array(152).keys()]; // ví dụ 152 sản phẩm
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(50);
@@ -33,16 +36,8 @@ function Company() {
     <div className="company-total">
       <div className="company-header">
         <button className="company-btn active">Danh sách công ty</button>
-        <button className="company-btn">Đăng ký công ty</button>
+        <button className="company-btn" onClick={()=> navigate("/create-company")} >Đăng ký quảng cáo công ty</button>
       </div>
-
-      {/* <div className="column-company">
-        {[...Array(100)].map((_, i) => (
-          <div key={i} className="box">
-            COMPANY
-          </div>
-        ))}
-      </div> */}
 
       <div className="column-company">
         {companies

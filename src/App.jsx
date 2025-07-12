@@ -1,8 +1,6 @@
 import "./App.css";
 import Footer from "./Component/Footer/Footer";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import CompanyGrid from "./Component/ComapanyGrid/CompanyGrid";
 
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
@@ -11,6 +9,9 @@ import Register from "./Page/Register/Register";
 import Login from "./Page/Login/Login";
 import Products from "./Page/Products/Products";
 import Company from "./Page/Company/Company";
+import UpdateUser from "./Page/UpdateUser/UpdateUser";
+import CreateCompanyPage from "./Page/CreateCompany/CreateCompany";
+import CreateProductPage from "./Page/CreateProduct/CreateProduct";
 
 function App() {
   return (
@@ -24,11 +25,11 @@ function App() {
             <input type="search" placeholder="Tìm sản phẩm..." />
           </div>
           <div className="login">
-            <Link className="header-link" to="/create-product">
+            <Link className="header-link" to="/list-product">
               SẢN PHẨM
             </Link>
 
-            <Link className="header-link" to="/create-company">
+            <Link className="header-link" to="/list-company">
               CÔNG TY
             </Link>
 
@@ -48,11 +49,15 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<CompanyGrid />} />
-            <Route path="/create-product" element={<Products />} />
-            <Route path="/create-company" element={<Company />} />
+            <Route path="/list-product" element={<Products />} />
+            <Route path="/list-company" element={<Company />} />
             <Route path="/info-user" element={<InfoUser />} />
             <Route path="/register-user" element={<Register />} />
             <Route path="/login-user" element={<Login />} />
+            <Route path="/update-user" element={<UpdateUser />} />
+
+            <Route path="/create-company" element={<CreateCompanyPage />} />
+            <Route path="/create-product" element={<CreateProductPage />} />
           </Routes>
         </main>
         <Footer />

@@ -24,7 +24,6 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
-    // TODO: Gửi dữ liệu lên server hoặc xử lý validation
   };
 
   return (

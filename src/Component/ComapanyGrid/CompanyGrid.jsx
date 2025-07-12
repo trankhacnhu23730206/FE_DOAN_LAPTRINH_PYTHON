@@ -1,4 +1,4 @@
-import ProductGrid from "../ProductGrid/ProductGrid";
+import { Link } from "react-router-dom";
 import "./CompanyGrid.css";
 
 // Component con cho mỗi ô sản phẩm
@@ -41,9 +41,9 @@ const GridBox = ({ title, imageUrl, items = [], linkText }) => {
         )}
       </div>
       {linkText && (
-        <a href="/" className="grid-box-link">
+        <Link to="/list-company" className="grid-box-link">
           {linkText}
-        </a>
+        </Link>
       )}
     </div>
   );
@@ -160,7 +160,7 @@ function CompanyGrid() {
           linkText="Xem thêm"
         />
       </div>
-      <ProductGrid />
+      {/* <ProductGrid /> */}
     </div>
   );
 }

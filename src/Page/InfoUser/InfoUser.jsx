@@ -3,9 +3,11 @@ import "./InfoUser.css";
 
 import { useState } from "react";
 import "./InfoUser.css";
+import { useNavigate } from "react-router-dom";
 
 function InfoUser() {
-    
+    const navigate = useNavigate();
+
     const [user, setUser] = useState({
     email: "tran.khac.nhu@example.com",
     username: "trankhacnhu",
@@ -25,7 +27,7 @@ function InfoUser() {
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Username:</strong> {user.username}</p>
         <p><strong>Số điện thoại:</strong> {user.phone}</p>
-        <button className="edit-btn">Chỉnh sửa thông tin</button>
+        <button className="edit-btn" onClick={() => navigate("/update-user")}>Chỉnh sửa thông tin</button>
       </div>
 
       <div className="user-products">
