@@ -1,15 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import "./Company.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function Company() {
   const navigate = useNavigate()
 
-  const allCompanies = [...Array(152).keys()]; // ví dụ 152 sản phẩm
   const [currentPage, setCurrentPage] = useState(1);
-  const [perPage, setPerPage] = useState(50);
+  const [perPage, setPerPage] = useState(10);
+  const [companies, setCompanies] = useState([]);
 
-  const totalPages = Math.ceil(allCompanies.length / perPage);
+   useEffect(() => {
+    const fetchCompanies = async () => {
+      try {
+        const response = await axios.get("http://localhost:9080/companies/getall");
+        setCompanies(response.data); // assuming response.data is an array
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách công ty:", error);
+      }
+    };
+
+    fetchCompanies();
+  }, []);
+
+
+  const totalPages = Math.ceil(companies.length / perPage);
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages) setCurrentPage(page);
@@ -20,17 +35,11 @@ function Company() {
     setCurrentPage(1); // reset về trang đầu
   };
 
-  const displayedCompanies = allCompanies.slice(
+  const displayedCompanies = companies.slice(
     (currentPage - 1) * perPage,
     currentPage * perPage
   );
 
-  const companies = Array.from({ length: 152 }, (_, i) => ({
-    name: `Công Ty ${i + 1}`,
-    location: "Hà Nội",
-    type: i % 3 === 0 ? "Food" : i % 3 === 1 ? "Education" : "Medicine",
-    phone: `090${100000 + i}`,
-  }));
 
   return (
     <div className="company-total">

@@ -44,6 +44,10 @@ function App() {
             <Link className="header-link" to="/login-user">
               ĐĂNG NHẬP
             </Link>
+
+            <Link className="header-link" to="/">
+              ĐĂNG XUẤT
+            </Link>
           </div>
         </header>
         <main className="main-content">

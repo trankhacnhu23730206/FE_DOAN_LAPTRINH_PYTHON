@@ -2,8 +2,11 @@ import "./Register.css";
 
 import { useState } from "react";
 import "./Register.css";
+import axios from "axios"; 
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -21,9 +24,20 @@ function Register() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
+
+      // ✅ Loại bỏ confirm_password khỏi dữ liệu gửi đi
+    const { confirm_password, ...dataToSend } = formData;
+
+    try {
+      const response = await axios.post("http://localhost:9080/users/create", dataToSend);
+      console.log("Đăng ký thành công:", response.data);
+      navigate("/login-user")
+    } catch (error) {
+      console.error("Lỗi khi đăng ký:", error.response?.data || error.message);
+    }
   };
 
   return (

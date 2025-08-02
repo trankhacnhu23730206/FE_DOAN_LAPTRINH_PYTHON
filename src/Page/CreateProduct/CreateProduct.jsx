@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import "./CreateProduct.css";
-
+import axiosPrivate from "../../Utils/PrivateCallApi";
+import { useNavigate } from "react-router-dom";
 
 const CreateProductPage = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     manufacturer: "",
@@ -20,16 +23,42 @@ const CreateProductPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData({
-      name: "",
-      manufacturer: "",
-      price: "",
-      category: "",
-      companyId: "",
-      note: "",
-    });
+
+    const dataToSend = {
+      name: formData.name,
+      location: formData.manufacturer,
+      price_now: Number(formData.price),
+      note: formData.note,
+      is_register: 0,
+      category_id: Number(formData.category),
+      company_id: Number(formData.companyId),
+    };
+
+    try {
+      const response = await axiosPrivate.post(
+        "http://localhost:9080/products/create",
+        dataToSend
+      );
+      console.log("Tạo product thành công:", response.data);
+      alert("Tạo sản phẩm thành công!");
+      setFormData({
+        name: "",
+        manufacturer: "",
+        price: "",
+        category: "",
+        companyId: "",
+        note: "",
+      });
+      navigate("/list-product");
+    } catch (error) {
+      console.error(
+        "Lỗi khi tạo san pham:",
+        error.response?.data || error.message
+      );
+      alert("Lỗi khi tạo san pham");
+    }
   };
 
   return (
@@ -80,12 +109,12 @@ const CreateProductPage = () => {
           />
         </label>
 
-          <label>
+        <label>
           Company:
           <input
             type="text"
-            name="company"
-            value={formData.category}
+            name="companyId"
+            value={formData.companyId}
             onChange={handleChange}
             required
           />

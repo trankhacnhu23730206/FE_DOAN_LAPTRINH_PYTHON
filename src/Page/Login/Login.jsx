@@ -3,6 +3,7 @@ import "./Login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
@@ -20,14 +21,29 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Đăng nhập:", formData);
 
-    // TODO: Gửi request tới server ở đây
+    try {
+      const response = await axios.post(
+        "http://localhost:9080/auth/token",
+        formData
+      );
+      console.log("Đăng nhập thành công:", response.data);
+      navigate("/");
 
-    // Chuyển hướng về trang chủ sau đăng nhập
-    navigate("/");
+      // ✅ Lưu token vào localStorage
+    localStorage.setItem("access_token", response.data.access_token);
+    localStorage.setItem("refresh_token", response.data.refresh_token);
+    localStorage.setItem("user_id", response.data.user_id);
+
+    } catch (error) {
+      console.error(
+        "Lỗi khi đăng nhap:",
+        error.response?.data || error.message
+      );
+    }
   };
 
   return (
@@ -56,7 +72,9 @@ function Login() {
           />
         </div>
 
-        <button type="submit" className="submit-btn">Đăng nhập</button>
+        <button type="submit" className="submit-btn">
+          Đăng nhập
+        </button>
       </form>
     </div>
   );

@@ -34,7 +34,7 @@ function InfoUser() {
         <h3>Sản phẩm đã tạo</h3>
         <div className="product-grid">
           {products.map((product) => (
-            <div className="product-card" key={product.id}>
+            <div className="product-card-userinfo" key={product.id}>
               <img src={product.image} alt={product.name} />
               <p>{product.name}</p>
             </div>
