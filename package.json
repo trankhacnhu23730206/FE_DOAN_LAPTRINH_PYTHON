@@ -1,8 +1,8 @@
 {
+  "homepage": "http://trankhacnhu23730206.github.io/FE_DOAN_LAPTRINH_PYTHON",
   "name": "python_doan",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://trankhacnhu23730206.github.io/FE_DOAN_LAPTRINH_PYTHON",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
