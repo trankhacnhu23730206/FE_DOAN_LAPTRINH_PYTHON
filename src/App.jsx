@@ -15,7 +15,7 @@ import CreateProductPage from "./Page/CreateProduct/CreateProduct";
 
 function App() {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter >
       <div className="app">
         <header className="header">
           <Link to="/" className="logo">
