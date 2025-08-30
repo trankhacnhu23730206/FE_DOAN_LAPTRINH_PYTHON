@@ -24,7 +24,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter basename="/FE_DOAN_LAPTRINH_PYTHON">
+    <BrowserRouter>
       <div className="app">
         <header className="header">
           <Link to="/" className="logo">
