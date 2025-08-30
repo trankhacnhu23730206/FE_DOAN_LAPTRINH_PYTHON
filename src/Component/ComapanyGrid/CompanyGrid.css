@@ -160,3 +160,37 @@
     min-height: auto; /* Chiều cao tự động */
   }
 }
+
+
+
+/* Phần banner phía trên */
+.banner-section {
+  
+  /* padding: 20px; */
+  margin-bottom: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.banner-image {
+  width: 100%;  /* Chiều rộng đầy đủ */
+  height: 300px; 
+  object-fit: cover;  /* Đảm bảo ảnh bao phủ toàn bộ phần container mà không bị méo */
+  border-radius: 8px;  /* Góc bo tròn để đẹp mắt */
+}
+
+.banner-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.banner-subtitle {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+

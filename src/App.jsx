@@ -12,10 +12,19 @@ import Company from "./Page/Company/Company";
 import UpdateUser from "./Page/UpdateUser/UpdateUser";
 import CreateCompanyPage from "./Page/CreateCompany/CreateCompany";
 import CreateProductPage from "./Page/CreateProduct/CreateProduct";
+import PublicOnly from "./Routes/PublicOnly";
+import RequireAuth from "./Routes/RequiredAuth";
+import { clearToken, isAuthenticated } from "./Utils/auth";
 
 function App() {
+
+  const handleLogout = () => {
+    clearToken();
+    window.location.href = "/login-user"; 
+  };
+
   return (
-    <BrowserRouter >
+    <BrowserRouter>
       <div className="app">
         <header className="header">
           <Link to="/" className="logo">
@@ -28,40 +37,54 @@ function App() {
             <Link className="header-link" to="/list-product">
               SẢN PHẨM
             </Link>
-
             <Link className="header-link" to="/list-company">
               CÔNG TY
             </Link>
 
-            <Link className="header-link" to="/register-user">
-              ĐĂNG KÝ
-            </Link>
-
-            <Link className="header-link" to="/info-user">
-              USER
-            </Link>
-
-            <Link className="header-link" to="/login-user">
-              ĐĂNG NHẬP
-            </Link>
-
-            <Link className="header-link" to="/">
-              ĐĂNG XUẤT
-            </Link>
+            {/* Nếu đã đăng nhập thì hiển thị User và Đăng xuất */}
+            {isAuthenticated() ? (
+              <>
+                <Link className="header-link" to="/info-user">
+                  USER
+                </Link>
+                <Link className="header-link" to="/" onClick={handleLogout}> 
+                  ĐĂNG XUẤT
+                </Link>
+              </>
+            ) : (
+              <>
+                {/* Nếu chưa đăng nhập thì hiển thị Đăng ký và Đăng nhập */}
+                <Link className="header-link" to="/register-user">
+                  ĐĂNG KÝ
+                </Link>
+                <Link className="header-link" to="/login-user">
+                  ĐĂNG NHẬP
+                </Link>
+              </>
+            )}
           </div>
         </header>
+
         <main className="main-content">
           <Routes>
+            {/* Public routes */}
             <Route path="/" element={<CompanyGrid />} />
             <Route path="/list-product" element={<Products />} />
             <Route path="/list-company" element={<Company />} />
-            <Route path="/info-user" element={<InfoUser />} />
-            <Route path="/register-user" element={<Register />} />
-            <Route path="/login-user" element={<Login />} />
-            <Route path="/update-user" element={<UpdateUser />} />
 
-            <Route path="/create-company" element={<CreateCompanyPage />} />
-            <Route path="/create-product" element={<CreateProductPage />} />
+            {/* Public-only (khách mới vào được) */}
+            <Route element={<PublicOnly />}>
+              <Route path="/register-user" element={<Register />} />
+              <Route path="/login-user" element={<Login />} />
+            </Route>
+
+            {/* Private routes (phải có token) */}
+            <Route element={<RequireAuth />}>
+              <Route path="/info-user" element={<InfoUser />} />
+              <Route path="/update-user" element={<UpdateUser />} />
+              <Route path="/create-company" element={<CreateCompanyPage />} />
+              <Route path="/create-product" element={<CreateProductPage />} />
+            </Route>
           </Routes>
         </main>
         <Footer />

@@ -52,14 +52,11 @@ const GridBox = ({ title, imageUrl, items = [], linkText }) => {
 function CompanyGrid() {
   return (
     <div className="product-grid-container">
-      {/* Phần banner phía trên (tùy chọn, mô phỏng từ ảnh) */}
       <div className="banner-section">
-        {/* <h2 className="banner-title">TRẦN KHẮC NHU PHÂN PHỐI SẢN PHẨM</h2> */}
-        {/* <p className="banner-subtitle">alexa</p> */}
         <img
-          src="https://lh3.googleusercontent.com/proxy/aAUxwffDmZGAXi4KjBtcGYTGQ0W9FIafRTfYWVzX8HhptgU2buqsjWwEmZxJ8COTYrhFSDrCjN-GP-moRCG1ByhIVP9SKwhdWVX_Adni2QbKRYKRkvEkk0l3RKHEmo0"
-          //  src="https://pl acehold.co/600x200/B0E0E6/000000?text=Amazon+Devices"
-          alt="Amazon Devices"
+          src="https://img.lovepik.com/photo/60241/2876.jpg_wh860.jpg"
+          F
+          alt="Banner"
           className="banner-image"
           onError={(e) => {
             e.target.onerror = null;

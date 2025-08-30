@@ -1,8 +1,8 @@
 /* Footer.css */
 
 .footer {
-  background-color: #2c3e50; /* Màu nền tối cho footer */
-  color: #ecf0f1; /* Màu chữ sáng */
+  background-color:  #b5eeb7; /* Màu nền tối cho footer */
+  color: black; /* Màu chữ sáng */
   padding: 40px 20px 20px; /* Đệm trên, dưới, hai bên */
   font-family: 'Segoe UI', sans-serif; /* Font chữ */
   border-top: 1px solid #34495e; /* Đường viền trên nhẹ */
