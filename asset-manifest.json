@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/FE_DOAN_LAPTRINH_PYTHON/static/css/main.d95946ce.css",
-    "main.js": "/FE_DOAN_LAPTRINH_PYTHON/static/js/main.7b217a11.js",
+    "main.css": "/FE_DOAN_LAPTRINH_PYTHON/static/css/main.2cb92dd9.css",
+    "main.js": "/FE_DOAN_LAPTRINH_PYTHON/static/js/main.1e4fff49.js",
     "index.html": "/FE_DOAN_LAPTRINH_PYTHON/index.html",
-    "main.d95946ce.css.map": "/FE_DOAN_LAPTRINH_PYTHON/static/css/main.d95946ce.css.map",
-    "main.7b217a11.js.map": "/FE_DOAN_LAPTRINH_PYTHON/static/js/main.7b217a11.js.map"
+    "main.2cb92dd9.css.map": "/FE_DOAN_LAPTRINH_PYTHON/static/css/main.2cb92dd9.css.map",
+    "main.1e4fff49.js.map": "/FE_DOAN_LAPTRINH_PYTHON/static/js/main.1e4fff49.js.map"
   },
   "entrypoints": [
-    "static/css/main.d95946ce.css",
-    "static/js/main.7b217a11.js"
+    "static/css/main.2cb92dd9.css",
+    "static/js/main.1e4fff49.js"
   ]
 }
