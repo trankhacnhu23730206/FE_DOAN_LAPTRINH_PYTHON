@@ -7,6 +7,7 @@
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  height: 100vh;
 }
 
 .user-info {
@@ -56,3 +57,47 @@
   object-fit: cover;
   border-radius: 4px;
 }
+
+
+
+
+
+
+/* Card ô vuông, bo tròn, hiệu ứng hover */
+.product-card-userinfo{
+  width: 220px;
+  aspect-ratio: 1 / 1;     /* VUÔNG */
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* tên ở giữa ô */
+  text-align: center;
+  padding: 16px;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(135deg,#3b82f6,#22c55e);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.product-card-userinfo:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0,0,0,.18);
+}
+
+/* Tên công ty gọn gàng, nếu dài thì … */
+.product-card-userinfo p{
+  margin: 0;
+  padding: 0 12px;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Đổi màu mỗi ô cho giống “category tiles” */
+.product-card-userinfo:nth-child(6n+1){background:linear-gradient(135deg,#2563eb,#06b6d4);}
+.product-card-userinfo:nth-child(6n+2){background:linear-gradient(135deg,#0ea5e9,#22d3ee);}
+.product-card-userinfo:nth-child(6n+3){background:linear-gradient(135deg,#06b6d4,#14b8a6);}
+.product-card-userinfo:nth-child(6n+4){background:linear-gradient(135deg,#f59e0b,#f97316);}
+.product-card-userinfo:nth-child(6n+5){background:linear-gradient(135deg,#a855f7,#ec4899);}
+.product-card-userinfo:nth-child(6n+6){background:linear-gradient(135deg,#10b981,#84cc16);}

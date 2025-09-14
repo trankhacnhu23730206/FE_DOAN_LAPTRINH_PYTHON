@@ -1,196 +1,167 @@
-/* ProductGrid.css */
+/* Lưới 3–4 cột, gọn vuông */
+.cat-grid{
+  display:grid;
+  gap:16px;
+  grid-template-columns:repeat(4, minmax(0,1fr));
+}
+@media (max-width: 1200px){ .cat-grid{ grid-template-columns:repeat(3, minmax(0,1fr)); } }
+@media (max-width: 900px){  .cat-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
+@media (max-width: 520px){  .cat-grid{ grid-template-columns:1fr; } }
 
-/* Container chính cho toàn bộ lưới */
-.product-grid-container {
+/* Ô vuông nhỏ gọn, toàn ô là link */
+.cat-tile{
+  position:relative;
+  aspect-ratio:1/1;             /* vuông */
+  border-radius:14px;
+  background: radial-gradient(120% 120% at 100% 0%, rgba(255,255,255,.15) 0%, transparent 70%),
+              var(--tile-color, #2563eb);
+  color:#fff;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+  border:1px solid rgba(255,255,255,.2);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  padding:14px;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.cat-tile:hover{
+  transform: translateY(-4px);
+  box-shadow:0 14px 28px rgba(0,0,0,.18);
+  filter: saturate(1.08);
+}
+
+/* Tên category */
+.cat-name{
+  font-weight:800;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  text-align:center;
+  line-height:1.15;
+  font-size:20px;
+}
+
+/* CTA nhỏ bên dưới */
+.cat-cta{
+  margin-top:10px;
+  font-size:13px;
+  font-weight:600;
+  opacity:.95;
+  background: rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.28);
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+/* Skeleton khi loading */
+.skeleton{
+  background: linear-gradient(90deg, #e9eef7 25%, #f4f7fc 37%, #e9eef7 63%);
+  background-size:400% 100%;
+  animation: shimmer 1.2s infinite;
+  border-radius:14px;
+}
+@keyframes shimmer{
+  0%{ background-position:100% 0; }
+  100%{ background-position:0 0; }
+}
+
+/* Thông báo rỗng/lỗi */
+.cat-empty{
+  grid-column:1 / -1;
+  background:#fff;
+  border:1px dashed #e5e7eb;
+  color:#6b7280;
+  padding:18px;
+  border-radius:12px;
+  text-align:center;
+}
+
+
+/* --- Container nhỏ lại & căn giữa --- */
+.product-grid-container{
+  /* max-width: 1100px;    */
+  margin: 0 auto;
   padding: 20px;
-  width: 100%;
-  /* max-width: 1200px;  */
-  margin: 0px; /* Căn giữa */
-  font-family: Arial, sans-serif; /* Font chữ */
-  /* background-color: #f0f2f5; */
-  border-radius: 0px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
-/* Phần banner phía trên */
-.banner-section {
-  background-color: #ffffff;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+/* --- Banner gọn hơn --- */
+.banner-image{
+  height: 200px;       /* trước là 300 -> giảm cho gọn */
+  object-fit: cover;
+  border-radius: 12px;
 }
 
-.banner-title {
-  font-size: 2em;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.banner-subtitle {
-  font-size: 1.2em;
-  color: #555;
-  margin-bottom: 15px;
-}
-
-.banner-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-/* Bố cục lưới chính */
-.main-grid {
+/* --- Lưới 3–4 cột, auto-fill theo tile cố định --- */
+.cat-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-  gap: 20px; /* Khoảng cách giữa các ô */
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  justify-items: center;   /* để tile có max-width vẫn căn giữa cột */
 }
 
-/* Định kiểu cho mỗi ô sản phẩm */
-.grid-box {
-  /* background-color: #ffffff; */
-  background-color: #f0f2f5;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Đẩy link xuống dưới */
-  min-height: 350px; /* Chiều cao tối thiểu cho các ô */
-}
-
-.grid-box-title {
-  font-size: 1.4em;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.grid-box-content {
-  flex-grow: 1; /* Cho phép nội dung mở rộng để lấp đầy không gian */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-}
-
-.grid-box-main-image {
-  max-width: 100%;
-  max-height: 200px; /* Giới hạn chiều cao của ảnh chính */
-  object-fit: contain; /* Đảm bảo ảnh hiển thị đầy đủ */
-  border-radius: 4px;
-}
-
-.grid-box-items-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Chia thành 2 cột cho các item nhỏ */
-  gap: 10px; /* Khoảng cách giữa các item nhỏ */
+/* --- Tile nhỏ gọn: cố định kích thước --- */
+.cat-tile{
   width: 100%;
+  max-width: 240px;    /* chặn bự quá khi màn hình rộng */
+  height: 180px;       /* dùng chiều cao cố định thay vì aspect-ratio */
+  border-radius: 14px;
+  background: radial-gradient(120% 120% at 100% 0%, rgba(255,255,255,.15) 0%, transparent 70%),
+              var(--tile-color, #2563eb);
+  color:#fff;
+  box-shadow:0 8px 18px rgba(0,0,0,.12);
+  border:1px solid rgba(255,255,255,.2);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  padding:12px;
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
 
-.grid-box-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+/* Hover nhẹ tay để không “giật” layout */
+.cat-tile:hover{
+  transform: translateY(-2px);
+  box-shadow:0 10px 22px rgba(0,0,0,.15);
 }
 
-.grid-box-item-image {
+/* Text nhỏ gọn hơn */
+.cat-name{
+  font-weight:800;
+  letter-spacing:.4px;
+  text-transform:uppercase;
+  text-align:center;
+  line-height:1.1;
+  font-size:16px;
+}
+.cat-cta{
+  margin-top:8px;
+  font-size:12px;
+  font-weight:600;
+  opacity:.95;
+  background: rgba(255,255,255,.18);
+  border:1px solid rgba(255,255,255,.28);
+  padding:5px 9px;
+  border-radius:999px;
+}
+
+/* Skeleton theo kích thước mới */
+.skeleton{
   width: 100%;
-  max-width: 120px; /* Giới hạn chiều rộng của ảnh item nhỏ */
-  height: auto;
-  object-fit: contain;
-  border-radius: 4px;
-  margin-bottom: 5px;
+  max-width: 240px;
+  height: 180px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, #e9eef7 25%, #f4f7fc 37%, #e9eef7 63%);
+  background-size:400% 100%;
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer{
+  0%{ background-position:100% 0; }
+  100%{ background-position:0 0; }
 }
 
-.grid-box-item-text {
-  font-size: 0.9em;
-  color: #555;
-  white-space: normal; /* Cho phép chữ xuống dòng */
-  word-break: break-word; /* Ngắt từ nếu quá dài */
+/* Responsive thêm: khi màn rất nhỏ thì tile thấp hơn chút */
+@media (max-width: 480px){
+  .cat-tile{ height: 160px; }
 }
-
-.grid-box-link {
-  display: block;
-  margin-top: 15px;
-  color: #007bff; /* Màu xanh link */
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95em;
-}
-
-.grid-box-link:hover {
-  text-decoration: underline;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .product-grid-container {
-    padding: 15px;
-  }
-  .banner-title {
-    font-size: 1.5em;
-  }
-  .banner-subtitle {
-    font-size: 1em;
-  }
-  .grid-box {
-    padding: 15px;
-    min-height: 300px;
-  }
-  .grid-box-title {
-    font-size: 1.2em;
-  }
-  .grid-box-item-image {
-    max-width: 100px;
-  }
-  .grid-box-item-text {
-    font-size: 0.85em;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-grid {
-    grid-template-columns: 1fr; /* Một cột trên màn hình rất nhỏ */
-  }
-  .grid-box {
-    min-height: auto; /* Chiều cao tự động */
-  }
-}
-
-
-
-/* Phần banner phía trên */
-.banner-section {
-  
-  /* padding: 20px; */
-  margin-bottom: 20px;
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.banner-image {
-  width: 100%;  /* Chiều rộng đầy đủ */
-  height: 300px; 
-  object-fit: cover;  /* Đảm bảo ảnh bao phủ toàn bộ phần container mà không bị méo */
-  border-radius: 8px;  /* Góc bo tròn để đẹp mắt */
-}
-
-.banner-title {
-  font-size: 2em;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.banner-subtitle {
-  font-size: 1.2em;
-  color: #555;
-  margin-bottom: 15px;
-}
-
-

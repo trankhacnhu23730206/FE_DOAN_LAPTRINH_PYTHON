@@ -1,44 +1,64 @@
 import "./InfoUser.css";
-
-
-import { useState } from "react";
-import "./InfoUser.css";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function InfoUser() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [companies, setCompanies] = useState([]);
+  const [err, setErr] = useState("");
 
-    const [user, setUser] = useState({
-    email: "tran.khac.nhu@example.com",
-    username: "trankhacnhu",
-    phone: "0987654321",
-  });
+  useEffect(() => {
+    const id = localStorage.getItem("user_id");
+    if (!id) { setErr("Không tìm thấy user_id trong localStorage"); return; }
 
-  const [products, setProducts] = useState([
-    { id: 1, name: "Sản phẩm A", image: "https://placehold.co/120x100" },
-    { id: 2, name: "Sản phẩm B", image: "https://placehold.co/120x100" },
-    { id: 3, name: "Sản phẩm C", image: "https://placehold.co/120x100" },
-  ]);
+    axios.get(`http://localhost:9080/users/${encodeURIComponent(id)}`)
+      .then(res => {
+        const u = res.data || {};
+        setUser({
+          email: u.email ?? "-",
+          username: `${u.first_name ?? ""}${u.last_name ? " " + u.last_name : ""}`.trim() || "-",
+          phone: (u.phone ?? "-").toString(),
+        });
+      })
+      .catch(() => setErr("Không tải được thông tin người dùng"));
+
+    axios.get(`http://localhost:9080/companies/by-user?user_id=${encodeURIComponent(id)}`)
+      .then(res => {
+        const data = Array.isArray(res.data) ? res.data : (res.data?.items ?? []);
+        setCompanies(data);
+      })
+      .catch(() => setCompanies([]));
+  }, []);
 
   return (
     <div className="user-page">
       <h2>Thông tin người dùng</h2>
       <div className="user-info">
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>Username:</strong> {user.username}</p>
-        <p><strong>Số điện thoại:</strong> {user.phone}</p>
-        <button className="edit-btn" onClick={() => navigate("/update-user")}>Chỉnh sửa thông tin</button>
+        {err && <p style={{ color: "red" }}>{err}</p>}
+        {!user && !err && <p>Đang tải...</p>}
+        {user && (
+          <>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Username:</strong> {user.username}</p>
+            <p><strong>Số điện thoại:</strong> {user.phone}</p>
+            <button className="edit-btn" onClick={() => navigate("/update-user", { state: { user } })}>
+              Chỉnh sửa thông tin
+            </button>
+          </>
+        )}
       </div>
 
       <div className="user-products">
-        <h3>Sản phẩm đã tạo</h3>
+        <h3>Công ty đã tạo</h3>
         <div className="product-grid">
-          {products.map((product) => (
-            <div className="product-card-userinfo" key={product.id}>
-              <img src={product.image} alt={product.name} />
-              <p>{product.name}</p>
+          {companies.map((company) => (
+            <div className="product-card-userinfo" key={company.id} onClick={() => navigate(`/list-product?company_id=${company.id}`)} style={{ cursor: "pointer" }}>
+              <p>{company.name}</p>
             </div>
           ))}
+          {!companies.length && <p>Chưa có công ty nào.</p>}
         </div>
       </div>
     </div>
@@ -46,4 +66,3 @@ function InfoUser() {
 }
 
 export default InfoUser;
-

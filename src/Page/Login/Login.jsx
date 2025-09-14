@@ -1,13 +1,10 @@
 import "./Login.css";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 
 function Login() {
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -31,14 +28,15 @@ function Login() {
         formData
       );
       console.log("Đăng nhập thành công:", response.data);
-      navigate("/");
+      // navigate("/");
+      window.location.href = "/";
 
       // ✅ Lưu token vào localStorage
-    localStorage.setItem("access_token", response.data.access_token);
-    localStorage.setItem("refresh_token", response.data.refresh_token);
-    localStorage.setItem("user_id", response.data.user_id);
-
+      localStorage.setItem("access_token", response.data.access_token);
+      localStorage.setItem("refresh_token", response.data.refresh_token);
+      localStorage.setItem("user_id", response.data.user_id);
     } catch (error) {
+      alert("Đăng nhập thất bại. Vui lòng kiểm tra lại email và mật khẩu.");
       console.error(
         "Lỗi khi đăng nhap:",
         error.response?.data || error.message
