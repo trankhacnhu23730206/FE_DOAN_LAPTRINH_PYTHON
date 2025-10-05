@@ -15,6 +15,7 @@ import CreateProductPage from "./Page/CreateProduct/CreateProduct";
 import PublicOnly from "./Routes/PublicOnly";
 import RequireAuth from "./Routes/RequiredAuth";
 import { clearToken, isAuthenticated } from "./Utils/auth";
+import ProductDetail from "./Page/ProductDetail/ProductDetail";
 
 function App() {
 
@@ -84,6 +85,9 @@ function App() {
               <Route path="/update-user" element={<UpdateUser />} />
               <Route path="/create-company" element={<CreateCompanyPage />} />
               <Route path="/create-product" element={<CreateProductPage />} />
+              
+                {/* NEW: trang chi tiết sản phẩm */}
+              <Route path="/product/:id" element={<ProductDetail />} />
             </Route>
           </Routes>
         </main>

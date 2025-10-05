@@ -65,8 +65,6 @@
 
 // export default Products;
 
-
-
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "./Products.css";
 import { useState, useEffect, useMemo } from "react";
@@ -83,7 +81,7 @@ function normalizeProduct(p) {
   return {
     id: p.id,
     name: p.name ?? "-",
-    manufacturer: p.manufacturer ?? p.location ?? "-",           // 2 API khác field
+    manufacturer: p.manufacturer ?? p.location ?? "-", // 2 API khác field
     price: p.price ?? p.price_now ?? null,
     category: p.category ?? p.category_name ?? "-",
     company: p.company ?? p.company_name?.name_company ?? "-",
@@ -103,7 +101,8 @@ export default function Products() {
   const [err, setErr] = useState("");
 
   const endpoint = useMemo(() => {
-    if (companyId) return `http://localhost:9080/products/by-company/${companyId}`;
+    if (companyId)
+      return `http://localhost:9080/products/by-company/${companyId}`;
     return "http://localhost:9080/products/getAll";
   }, [companyId]);
 
@@ -113,7 +112,7 @@ export default function Products() {
         setLoading(true);
         setErr("");
         const res = await axios.get(endpoint);
-        const arr = Array.isArray(res.data) ? res.data : (res.data?.items ?? []);
+        const arr = Array.isArray(res.data) ? res.data : res.data?.items ?? [];
         setProducts(arr.map(normalizeProduct));
       } catch (e) {
         console.error("Lỗi khi gọi API:", e);
@@ -129,13 +128,21 @@ export default function Products() {
     <div className="product-total">
       <div className="product-header">
         <button className="product-btn active">
-          {companyId ? `Danh sách sản phẩm (Company ${companyId})` : "Danh sách sản phẩm"}
+          {companyId
+            ? `Danh sách sản phẩm (Company ${companyId})`
+            : "Danh sách sản phẩm"}
         </button>
-        <button className="product-btn" onClick={() => navigate("/create-product")}>
+        <button
+          className="product-btn"
+          onClick={() => navigate("/create-product")}
+        >
           Đăng ký quảng cáo sản phẩm
         </button>
         {companyId && (
-          <button className="product-btn" onClick={() => navigate("/list-product")}>
+          <button
+            className="product-btn"
+            onClick={() => navigate("/list-product")}
+          >
             Xem tất cả
           </button>
         )}
@@ -143,15 +150,26 @@ export default function Products() {
 
       {loading ? (
         <div className="product-skeleton-row">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="product-card skeleton" />
-          ))}
+          <div class="loader-wrap">
+            <div class="spinner">
+              <div class="dot"></div>
+            </div>
+          </div>
         </div>
       ) : (
         <>
           <div className="product-grid">
             {products.map((p) => (
-              <div key={p.id} className="product-card">
+              <div
+                key={p.id}
+                className="product-card"
+                onClick={() => navigate(`/product/${p.id}`)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) =>
+                  e.key === "Enter" ? navigate(`/product/${p.id}`) : null
+                }
+              >
                 <div className="product-card__head">
                   <h3 className="product-name">{p.name}</h3>
                   <div className="pill-row">
@@ -165,7 +183,8 @@ export default function Products() {
                     <strong>Nhà máy:</strong> <span>{p.manufacturer}</span>
                   </li>
                   <li>
-                    <strong>Giá thị trường:</strong> <span className="price">{toVND(p.price)}</span>
+                    <strong>Giá thị trường:</strong>{" "}
+                    <span className="price">{toVND(p.price)}</span>
                   </li>
                   <li>
                     <strong>Điện thoại:</strong> <span>{p.phone}</span>
@@ -173,7 +192,9 @@ export default function Products() {
                   {p.createdAt && (
                     <li>
                       <strong>Tạo lúc:</strong>{" "}
-                      <span>{new Date(p.createdAt).toLocaleString("vi-VN")}</span>
+                      <span>
+                        {new Date(p.createdAt).toLocaleString("vi-VN")}
+                      </span>
                     </li>
                   )}
                 </ul>
@@ -187,7 +208,9 @@ export default function Products() {
             ))}
 
             {!products.length && (
-              <div className="product-empty">{err || "Không có sản phẩm phù hợp."}</div>
+              <div className="product-empty">
+                {err || "Không có sản phẩm phù hợp."}
+              </div>
             )}
           </div>
         </>

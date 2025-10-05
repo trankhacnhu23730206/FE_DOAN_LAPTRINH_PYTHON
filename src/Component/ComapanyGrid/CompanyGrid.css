@@ -87,9 +87,11 @@
 
 /* --- Banner gọn hơn --- */
 .banner-image{
-  height: 200px;       /* trước là 300 -> giảm cho gọn */
+  height: 200px;
+  width: 25%;
   object-fit: cover;
   border-radius: 12px;
+  padding-right: 14px;
 }
 
 /* --- Lưới 3–4 cột, auto-fill theo tile cố định --- */
